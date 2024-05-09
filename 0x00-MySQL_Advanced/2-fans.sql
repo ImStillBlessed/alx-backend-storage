@@ -6,12 +6,12 @@
 -- Context: Calculate/compute something is always power intensive… better to distribute the load!
 
 LOAD DATA INFILE 'metal_bands.sql'
-INTO TABLE bands
+INTO TABLE metal_bands
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-(origin, nb_fans);
+(origin, fans);
 
-SELECT origin, SUM(nb_fans) AS nb_fans
+SELECT origin, fans AS nb_fans
 FROM metal_bands
 GROUP BY origin
 ORDER BY nb_fans DESC;
