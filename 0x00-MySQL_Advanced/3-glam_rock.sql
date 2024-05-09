@@ -13,3 +13,11 @@ INTO TABLE bands
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 (band_name, lifespan,);
+
+SELECT band_name, 
+       IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', 1), '-', -1), 0) AS formed,
+       IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', -1), '-', -1), 0) AS split,
+       IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', 1), '-', -1), 0) - IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', -1), '-', -1), 0) AS lifespan
+FROM metal_bands
+WHERE band_style = 'Glam rock'
+ORDER BY lifespan DESC;
