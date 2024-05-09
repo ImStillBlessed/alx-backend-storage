@@ -4,13 +4,6 @@
 -- Column names must be: origin and nb_fans
 -- Your script can be executed on any database
 -- Context: Calculate/compute something is always power intensive… better to distribute the load!
-
-LOAD DATA INFILE 'metal_bands.sql'
-INTO TABLE metal_bands
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-(origin, fans);
-
 SELECT origin, fans AS nb_fans
 FROM metal_bands
 GROUP BY origin

@@ -8,12 +8,6 @@
 -- You should use attributes formed and split for computing the lifespan
 -- Your script can be executed on any database
 
-LOAD DATA INFILE 'metal_bands.sql'
-INTO TABLE bands
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-(band_name, lifespan,);
-
 SELECT band_name, 
        IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', 1), '-', -1), 0) AS formed,
        IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(lifespan, ' - ', -1), '-', -1), 0) AS split,
